@@ -10,8 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CategoriaServiceTest {
@@ -43,20 +42,13 @@ class CategoriaServiceTest {
 
     @Test
     public void testDeletarCategoria_Success() {
-        Categoria categoria = new Categoria();
-        categoria.setNomeCategoria("New category");
+        Integer id = 1;
+        doNothing().when(categoriaRepository).deleteById(id);
+        doNothing().when(categoriaService).buscarCategoriaPorId(id);
 
-        // MONTANDO O CENARIO
-        when(categoriaRepository.existsByNomeCategoria(categoria.getNomeCategoria())).thenReturn(false);
-        when(categoriaRepository.save(any(Categoria.class))).thenReturn(categoria);
+        categoriaService.deletarCategoria(id);
 
-        // EXECUTANDO
-        Categoria result = categoriaService.criarCategoria(categoria);
-
-        // VALIDANDO
-        assertNotNull(result);
-        assertEquals("New category", result.getNomeCategoria());
-        verify(categoriaRepository).existsByNomeCategoria(categoria.getNomeCategoria());
-        verify(categoriaRepository).save(any(Categoria.class));
+        verify(categoriaRepository).deleteById(id);
+        verify(categoriaService).buscarCategoriaPorId(id);
     }
 }
