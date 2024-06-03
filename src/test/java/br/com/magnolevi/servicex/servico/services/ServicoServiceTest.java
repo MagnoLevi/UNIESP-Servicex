@@ -1,5 +1,6 @@
 package br.com.magnolevi.servicex.servico.services;
 
+import br.com.magnolevi.servicex.categoria.domain.Categoria;
 import br.com.magnolevi.servicex.servico.domain.Servico;
 import br.com.magnolevi.servicex.servico.repositories.ServicoRepository;
 import org.junit.jupiter.api.Test;
@@ -23,8 +24,14 @@ class ServicoServiceTest {
 
     @Test
     public void testCadastrarServico_Success() {
+        Categoria categoria = new Categoria();
+        // categoria.setIdCategoria(1);
+        // categoria.setNomeCategoria("New category");
+
         Servico servico = new Servico();
-        servico.setIdServico(1);
+        servico.setNome("Teste");
+        servico.setValor(200.0);
+        servico.setCategoria(categoria);
 
         // MONTANDO O CENARIO
         when(servicoRepository.existsById(servico.getIdServico())).thenReturn(false);
