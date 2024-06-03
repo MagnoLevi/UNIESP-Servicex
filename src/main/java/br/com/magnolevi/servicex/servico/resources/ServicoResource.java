@@ -32,12 +32,10 @@ public class ServicoResource {
             @ApiResponse(responseCode = "201", description = "Cadastro com sucesso",
                     content = @Content(
                             examples = @ExampleObject(value = "{\n" +
-                                    "  \"idServico\": 5,\n" +
                                     "  \"nome\": \"Logotipo\",\n" +
                                     "  \"valor\": 500, \n" +
                                     "  \"categoria\": {\n" +
-                                    "  \"idCategoria\": 3,\n" +
-                                    "  \"nomeCategoria\": \"Desenvolvimento\"\n" +
+                                    "  \"idCategoria\": 3\n" +
                                     "  }\n" +
                                     "}")
                     )),
